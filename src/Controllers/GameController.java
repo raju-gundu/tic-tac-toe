@@ -30,6 +30,9 @@ public class GameController {
     public GameState checkState(Game game){
             return game.getGameState();
     }
+    public Player getWinner(Game game){
+        return game.getWinner();
+    }
 
     public void undo(){
 

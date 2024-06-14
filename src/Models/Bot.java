@@ -13,7 +13,9 @@ public class Bot extends Player{
         this.botPlayingStratergy= BotPlayingStratergyFactory.getBotplayinStratergy(botDiffLevel);
     }
     public Move makeMove(Board board){
-        return this.botPlayingStratergy.makeMove(board);
+        Move move=this.botPlayingStratergy.makeMove(board);
+        move.setPlayer(this);
+        return move;
     }
 
     public BotDiffLevel getBotDiffLevel() {
