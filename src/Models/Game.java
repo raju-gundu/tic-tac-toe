@@ -53,7 +53,7 @@ public class Game {
         nextPlayerTurnIndex+=1;
         nextPlayerTurnIndex%=players.size();
 
-        if (checkWinner(move)){
+        if (checkWinner(actualMove)){
             setGameState(GameState.WIN);
             setWinner(currentPlayer);
             return;
@@ -86,6 +86,24 @@ public class Game {
             return false;
         }
         return true;
+    }
+
+    public void undo(Game game){
+        if (moves.size()==0)
+            return;
+        Move lastMove = moves.getLast();
+        moves.remove(lastMove);
+
+        Cell cell = lastMove.getCell();
+        cell.setPlayer(null);
+        cell.setCellState(CellState.EMPTY);
+
+        for (WinningStratergy winningStratergy : winningStratergies){
+            winningStratergy.undo(board,lastMove);
+        }
+
+        nextPlayerTurnIndex-=1;
+        nextPlayerTurnIndex=(nextPlayerTurnIndex+players.size())%players.size();
     }
 
     public static Builder getBuilder(){

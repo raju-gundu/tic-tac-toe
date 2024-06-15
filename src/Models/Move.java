@@ -4,9 +4,9 @@ public class Move {
     private Cell cell;
     private Player player;
 
-    public Move(Cell cell,Player player) {
+    public Move(Cell cell, Player player) {
         this.cell = cell;
-        this.player=player;
+        this.player = player;
     }
 
     public Cell getCell() {
@@ -16,10 +16,12 @@ public class Move {
     public void setCell(Cell cell) {
         this.cell = cell;
     }
-    public void setPlayer(Player player){
-        this.player=player;
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
-    public Player getPlayer(){
+
+    public Player getPlayer() {
         return player;
     }
 }

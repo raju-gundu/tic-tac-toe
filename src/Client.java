@@ -7,6 +7,7 @@ import Stratergies.WinningStratergy.WinningStratergy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
@@ -22,10 +23,19 @@ public class Client {
             winningStratergies.add(new RowWinningStratergy());
             winningStratergies.add(new DiagnolWinningStratergy());
 
+            Scanner scanner = new Scanner(System.in);
+
             Game game=gameController.startGame(dimensions,players,winningStratergies);
             System.out.println("Game has been created");
             while (gameController.checkState(game).equals(GameState.IN_PROGRESS)){
                 gameController.displayBoard(game);
+
+                System.out.println("Do you want to undo (y/n)");
+                String ans = scanner.next();
+                if (ans.equalsIgnoreCase("y")){
+                    gameController.undo(game);
+                    continue;
+                }
                 gameController.makeMove(game);
             }
 

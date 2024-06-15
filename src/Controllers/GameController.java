@@ -34,8 +34,8 @@ public class GameController {
         return game.getWinner();
     }
 
-    public void undo(){
-
+    public void undo(Game game){
+        game.undo(game);
     }
 
 }

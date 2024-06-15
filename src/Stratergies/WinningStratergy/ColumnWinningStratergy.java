@@ -13,7 +13,7 @@ public class ColumnWinningStratergy implements WinningStratergy{
     @Override
     public boolean checkWinner(Board board, Move move) {
         int col = move.getCell().getCol();
-        Symbol symbol = move.getPlayer().getSymbol();
+        Symbol symbol = move.getCell().getPlayer().getSymbol();
         if (!count.containsKey(col)){
             count.put(col,new HashMap<>());
         }
@@ -27,5 +27,16 @@ public class ColumnWinningStratergy implements WinningStratergy{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void undo(Board board, Move move) {
+        int col = move.getCell().getCol();
+        Symbol symbol = move.getPlayer().getSymbol();
+
+        Map<Symbol,Integer> colmap = count.get(col);
+
+        colmap.put(symbol,colmap.get(symbol)-1);
+
     }
 }
